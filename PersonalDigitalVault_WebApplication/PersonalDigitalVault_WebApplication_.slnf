@@ -1,8 +1,0 @@
-{
-  "solution": {
-    "path": "..\\PersonalDigitalVault_WebApplication.slnx",
-    "projects": [
-      "PersonalDigitalVault_WebApplication\\PersonalDigitalVault_WebApplication.csproj"
-    ]
-  }
-}
