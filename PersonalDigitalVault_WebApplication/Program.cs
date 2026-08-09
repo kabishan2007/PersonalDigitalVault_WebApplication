@@ -100,7 +100,7 @@ app.UseHttpsRedirection();
 // Correct order: Authentication first, then Authorization
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseAuthentication();
 app.MapControllers();
 
 app.Run();

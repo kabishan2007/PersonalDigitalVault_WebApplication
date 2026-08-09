@@ -6,6 +6,7 @@ using PersonalDigitalVault_WebApplication.Repositories.Interfaces;
 namespace PersonalDigitalVault_WebApplication.Repositories
 {
     public class AdminRepository : IAdminRepository
+
     {
         private readonly ApplicationDbContext _context;
 

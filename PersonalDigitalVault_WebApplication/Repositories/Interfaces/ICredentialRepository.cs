@@ -14,4 +14,7 @@ namespace PersonalDigitalVault_WebApplication.Repositories.Interfaces
 
         Task Delete(int id);
     }
+
+
+    
 }
