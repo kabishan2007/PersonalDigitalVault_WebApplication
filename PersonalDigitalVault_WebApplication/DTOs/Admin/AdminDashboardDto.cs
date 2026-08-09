@@ -1,6 +1,6 @@
 ﻿namespace PersonalDigitalVault_WebApplication.DTOs.Admin
 {
-    public class DashboardDto
+    public class AdminDashboardDto
     {
         public int TotalUsers { get; set; }
 
