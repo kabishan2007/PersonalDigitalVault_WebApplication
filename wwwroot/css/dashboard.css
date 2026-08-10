@@ -1,0 +1,36 @@
+.dash-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.quick-links a {
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(160deg, #fff, #f2f7f7);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.quick-links a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(15, 110, 106, 0.35);
+}
+
+.quick-links h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+}
+
+@media (max-width: 800px) {
+  .quick-links {
+    grid-template-columns: 1fr;
+  }
+}

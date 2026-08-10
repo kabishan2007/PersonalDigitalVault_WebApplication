@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Folders · Personal Digital Vault</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/folder.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="/images/logo.png" alt="Logo" />
+        <span>Personal Digital Vault</span>
+      </div>
+      <nav class="nav-links">
+        <a href="/dashboard.html" data-nav="dashboard">Dashboard</a>
+        <a href="/folders.html" data-nav="folders">Folders</a>
+        <a href="/documents.html" data-nav="documents">Documents</a>
+        <a href="/credentials.html" data-nav="credentials">Credentials</a>
+        <a href="/profile.html" data-nav="profile">Profile</a>
+        <a href="/admin-dashboard.html" data-nav="admin" id="adminNav" style="display:none">Admin</a>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="user-chip">
+          <img src="/images/user.png" alt="User" />
+          <div>
+            <strong id="shellUserName">User</strong>
+            <small id="shellUserRole">Role</small>
+          </div>
+        </div>
+        <button class="btn btn-ghost" id="logoutBtn" type="button">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Folders</h1>
+          <p>Create and manage folders in your vault.</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div id="folderAlert" class="alert"></div>
+        <form id="folderForm" class="folder-form">
+          <div class="field">
+            <label for="folderName">Folder name</label>
+            <input id="folderName" name="folderName" type="text" required placeholder="e.g. Personal Docs" />
+          </div>
+          <button class="btn btn-primary" type="submit">Add folder</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>Your folders</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="folderTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="editModal">
+    <div class="modal">
+      <h3>Edit folder</h3>
+      <form id="editFolderForm">
+        <div class="field">
+          <label for="editFolderName">Folder name</label>
+          <input id="editFolderName" name="folderName" type="text" required />
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" type="button" id="closeModal">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/folder.js"></script>
+</body>
+</html>

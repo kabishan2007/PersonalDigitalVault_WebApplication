@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PersonalDigitalVault_WebApplication.Data;
@@ -89,6 +90,12 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -97,10 +104,27 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Correct order: Authentication first, then Authorization
+var pagesPath = Path.Combine(app.Environment.ContentRootPath, "Pages");
+Directory.CreateDirectory(pagesPath);
+var pagesProvider = new PhysicalFileProvider(pagesPath);
+
+var defaultFiles = new DefaultFilesOptions
+{
+    FileProvider = pagesProvider
+};
+defaultFiles.DefaultFileNames.Clear();
+defaultFiles.DefaultFileNames.Add("index.html");
+app.UseDefaultFiles(defaultFiles);
+
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = pagesProvider,
+    RequestPath = ""
+});
+
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseAuthentication();
 app.MapControllers();
 
 app.Run();

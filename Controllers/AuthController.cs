@@ -20,23 +20,47 @@ namespace PersonalDigitalVault_WebApplication.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-            var result = await _authService.Register(dto);
+            try
+            {
+                var result = await _authService.Register(dto);
 
-            if (result == "Email already registered")
-                return BadRequest(new { message = result });
+                if (result == "Email already registered")
+                    return BadRequest(new { message = result });
 
-            return Ok(new { message = result });
+                return Ok(new { message = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Registration failed. " + GetSafeMessage(ex) });
+            }
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            var result = await _authService.Login(dto);
+            try
+            {
+                var result = await _authService.Login(dto);
 
-            if (result == "Invalid Email or Password")
-                return Unauthorized(new { message = result });
+                if (result == "Invalid Email or Password")
+                    return Unauthorized(new { message = result });
 
-            return Ok(new { token = result });
+                return Ok(new { token = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Login failed. " + GetSafeMessage(ex) });
+            }
+        }
+
+        private static string GetSafeMessage(Exception ex)
+        {
+            var text = ex.InnerException?.Message ?? ex.Message;
+            if (text.Contains("Cannot open database", StringComparison.OrdinalIgnoreCase))
+                return "Database is missing. Restart the application.";
+            if (text.Length > 160)
+                return text[..160] + "…";
+            return text;
         }
 
 

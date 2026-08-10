@@ -1,0 +1,21 @@
+.upload-form {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr auto;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.upload-form .field {
+  margin-bottom: 0;
+}
+
+.file-name {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 800px) {
+  .upload-form {
+    grid-template-columns: 1fr;
+  }
+}

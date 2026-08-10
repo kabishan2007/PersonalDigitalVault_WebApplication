@@ -1,0 +1,16 @@
+.folder-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.folder-form .field {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .folder-form {
+    grid-template-columns: 1fr;
+  }
+}
