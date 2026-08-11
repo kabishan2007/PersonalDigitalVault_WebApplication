@@ -75,25 +75,25 @@
 
   <script src="/js/api.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const profile = await hydrateShell("dashboard");
-      const alertBox = document.getElementById("dashAlert");
+      document.addEventListener("DOMContentLoaded", async () => {
+          const profile = await hydrateShell("dashboard");
+          const alertBox = document.getElementById("dashAlert");
 
-      try {
-        const [folders, documents, credentials] = await Promise.all([
-          VaultApi.getFolders(),
-          VaultApi.getDocuments(),
-          VaultApi.getCredentials(),
-        ]);
+          try {
+              const [folders, documents, credentials] = await Promise.all([
+                  VaultApi.getFolders(),
+                  VaultApi.getDocuments(),
+                  VaultApi.getCredentials(),
+              ]);
 
-        document.getElementById("statFolders").textContent = folders?.length || 0;
-        document.getElementById("statDocuments").textContent = documents?.length || 0;
-        document.getElementById("statCredentials").textContent = credentials?.length || 0;
-        document.getElementById("statRole").textContent = profile?.role || VaultApi.getRole() || "User";
-      } catch (err) {
-        showAlert(alertBox, err.message || "Could not load dashboard");
-      }
-    });
+              document.getElementById("statFolders").textContent = folders?.length || 0;
+              document.getElementById("statDocuments").textContent = documents?.length || 0;
+              document.getElementById("statCredentials").textContent = credentials?.length || 0;
+              document.getElementById("statRole").textContent = profile?.role || VaultApi.getRole() || "User";
+          } catch (err) {
+              showAlert(alertBox, err.message || "Could not load dashboard");
+          }
+      });
   </script>
 </body>
 </html>
